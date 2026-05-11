@@ -3,8 +3,20 @@ import { ArrowRight } from 'lucide-react';
 
 const countries = [
   { name: 'Poland', code: 'PL', flag: '🇵🇱', image: 'https://images.unsplash.com/photo-1519197924294-4ba991a11128?q=80&w=1470&auto=format&fit=crop' },
-  { name: 'Serbia', code: 'RS', flag: '🇷🇸', image: 'https://images.unsplash.com/photo-1552093551-789a7f34c26a?q=80&w=1374&auto=format&fit=crop' },
-  { name: 'Romania', code: 'RO', flag: '🇷🇴', image: 'https://images.unsplash.com/photo-1543831817-64df4249a1f7?q=80&w=1374&auto=format&fit=crop' },
+  {
+    name: 'Serbia',
+    code: 'RS',
+    flag: '🇷🇸',
+    image:
+      'https://images.pexels.com/photos/31003267/pexels-photo-31003267.jpeg?auto=compress&cs=tinysrgb&w=1374&h=2060&fit=crop',
+  },
+  {
+    name: 'Romania',
+    code: 'RO',
+    flag: '🇷🇴',
+    image:
+      'https://images.pexels.com/photos/34504268/pexels-photo-34504268.jpeg?auto=compress&cs=tinysrgb&w=1374&h=2060&fit=crop',
+  },
   { name: 'Germany', code: 'DE', flag: '🇩🇪', image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=1470&auto=format&fit=crop' },
   { name: 'Hungary', code: 'HU', flag: '🇭🇺', image: 'https://images.unsplash.com/photo-1551867633-194f125bddfa?q=80&w=1471&auto=format&fit=crop' },
 ];
