@@ -14,7 +14,7 @@ export default function BrandLogo({ size = 'nav', className = '' }: BrandLogoPro
       <img
         src="/logo.png"
         alt="NN Europe Consultant — circular gold and navy logo with NN monogram, EU stars, globe, and motto: Your Trust Partner to Europe"
-        className={`${imgClass} shrink-0 transition-transform duration-300 group-hover:scale-[1.02]`}
+        className={`${imgClass} shrink-0 transition-transform duration-300 group-hover:scale-[1.02] drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]`}
         decoding="async"
         fetchPriority={size === 'nav' ? 'high' : 'auto'}
       />
