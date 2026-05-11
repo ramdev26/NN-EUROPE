@@ -11,8 +11,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
 const logoPath = path.join(root, 'public', 'logo.png');
 
-const MAXV = 26; // max(R,G,B) below this → candidate for removal
-const SPREAD = 20; // max - min above this → keep (navy / gold)
+// Slightly aggressive: removes matte black frame while keeping navy/gold ink.
+const MAXV = 30;
+const SPREAD = 22;
 
 async function main() {
   const input = await readFile(logoPath);

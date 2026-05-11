@@ -35,7 +35,9 @@ export default function Stats() {
                   <stat.icon size={28} />
                 </div>
                 <div className="text-4xl md:text-5xl font-bold mb-2 text-gold font-display">{stat.value}</div>
-                <div className="text-[10px] md:text-xs font-bold text-white/40 uppercase tracking-[0.2em]">{stat.label}</div>
+                <div className="text-xs md:text-sm font-bold uppercase tracking-[0.18em] text-white/55">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </div>
