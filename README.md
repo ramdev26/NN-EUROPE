@@ -1,20 +1,83 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# NN Europe Consultant
 
-# Run and deploy your AI Studio app
+A polished marketing site for **NN Europe Consultant** — a premium immigration and visa consultancy focused on European destinations. Built as a fast, responsive single-page experience with smooth motion and a cohesive brand palette.
 
-This contains everything you need to run your app locally.
+**Live repository:** [github.com/ramdev26/NN-EUROPE](https://github.com/ramdev26/NN-EUROPE)
 
-View your app in AI Studio: https://ai.studio/apps/d20e00bd-18eb-4fab-a366-ae773d111373
+---
 
-## Run Locally
+## Highlights
 
-**Prerequisites:**  Node.js
+- **Hero & narrative** — Strong first impression with imagery, trust signals, and clear calls to action.
+- **Services & destinations** — Structured sections for offerings and target countries.
+- **Social proof** — Stats, testimonials, and a process timeline to guide visitors.
+- **FAQ & footer** — Practical answers and persistent navigation/contact patterns.
+- **Scroll polish** — Top-of-page progress indicator and section animations via Motion.
 
+---
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Tech stack
+
+| Layer        | Choice                          |
+| ------------ | ------------------------------- |
+| UI           | React 19                        |
+| Build        | Vite 6                          |
+| Styling      | Tailwind CSS 4 (`@tailwindcss/vite`) |
+| Motion       | Motion (Framer Motion API)      |
+| Icons        | Lucide React                    |
+| Language     | TypeScript                      |
+
+---
+
+## Prerequisites
+
+- **Node.js** 20+ (LTS recommended)
+
+---
+
+## Getting started
+
+```bash
+npm install
+npm run dev
+```
+
+The dev server listens on **port 3000** by default (`http://localhost:3000`). No API keys or `.env` files are required for the static marketing experience.
+
+### Other scripts
+
+| Command        | Description                |
+| -------------- | -------------------------- |
+| `npm run build`   | Production build to `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint`    | Typecheck with `tsc --noEmit` |
+
+---
+
+## Deployment
+
+Build static assets, then host `dist/` on any static host (e.g. GitHub Pages, Netlify, Vercel, Cloudflare Pages):
+
+```bash
+npm run build
+```
+
+Point the host’s “publish directory” to **`dist`**.
+
+---
+
+## Project layout
+
+```
+src/
+  App.tsx           # Page shell, scroll progress, section order
+  main.tsx          # React entry
+  index.css         # Global styles & Tailwind
+  components/       # Navbar, Hero, Services, FAQ, Footer, etc.
+```
+
+---
+
+## License
+
+Private project unless otherwise stated by the owner.
