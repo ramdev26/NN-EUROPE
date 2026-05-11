@@ -10,14 +10,14 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="relative z-20 px-5">
+    <section className="relative z-10 bg-brand-navy px-5 pt-10 pb-6 md:pt-14 md:pb-10">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-          className="relative -mt-20 overflow-hidden rounded-[2rem] border border-white/10 bg-brand-navy/80 p-6 shadow-[0_40px_100px_-24px_rgba(0,0,0,0.65)] backdrop-blur-2xl md:-mt-28 md:rounded-[2.5rem] md:p-8 lg:-mt-32 lg:rounded-[3rem] lg:p-10 xl:p-12"
+          className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-brand-navy/80 p-6 shadow-[0_40px_100px_-24px_rgba(0,0,0,0.65)] backdrop-blur-2xl md:rounded-[2.5rem] md:p-8 lg:rounded-[3rem] lg:p-10 xl:p-12"
         >
           <div
             className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-brand-gold/45 to-transparent md:inset-x-12"

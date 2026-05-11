@@ -3,7 +3,7 @@ import { ArrowRight, CheckCircle2, ChevronDown, ShieldCheck, Zap, Users } from '
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 md:pt-32 pb-32 md:pb-40 overflow-hidden">
+    <section className="relative flex min-h-screen items-center overflow-hidden pt-20 pb-24 md:pt-32 md:pb-28">
       {/* Background with cinematic Europe city */}
       <div className="absolute inset-0 z-0">
         <img 
