@@ -10,7 +10,7 @@ const pillars = [
 ];
 
 const paragraphs = [
-  'Founded on November 18, NN Europe Consultant was created with one clear mission: to guide people toward genuine European opportunities with honesty, transparency, and responsibility.',
+  'Founded on November 18, NN Europe Consultant was created with one clear mission, to guide people toward genuine European opportunities with honesty, transparency, and responsibility.',
   'We understand that many individuals have been misled by unreliable agencies and false promises. That is why NN Europe Consultant was established to provide a trustworthy and professional path for those who dream of building a future in Europe.',
   'At NN Europe Consultant, we help clients identify the right opportunities that match their skills, experience, and career goals. We specialize in Poland work visa consultation, documentation assistance, embassy procedures, and step-by-step guidance for entering Schengen countries legally and confidently.',
   'Our passion is helping hardworking individuals turn their European dream into a reality by offering safe, reliable, and client-focused support throughout the entire process.',
