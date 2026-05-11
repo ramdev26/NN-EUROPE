@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Phone, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import BrandLogo from './BrandLogo';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,14 +30,7 @@ export default function Navbar() {
       }`}
     >
       <div className="container-custom flex items-center justify-between">
-        <div className="flex items-center gap-3 group cursor-pointer">
-          <div className="w-10 h-10 md:w-11 md:h-11 bg-gold rounded-full flex items-center justify-center font-display font-bold text-brand-navy group-hover:scale-110 shadow-lg shadow-brand-gold/20 transition-all duration-500">
-            NN
-          </div>
-          <span className="font-display text-lg md:text-xl font-bold tracking-tight">
-            EUROPE <span className="text-brand-gold">CONSULTANT</span>
-          </span>
-        </div>
+        <BrandLogo size="nav" />
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-10 text-sm font-semibold tracking-wide">

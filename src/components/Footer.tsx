@@ -1,4 +1,5 @@
 import { Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, ArrowRight } from 'lucide-react';
+import BrandLogo from './BrandLogo';
 
 export default function Footer() {
   return (
@@ -7,14 +8,7 @@ export default function Footer() {
       
       <div className="container-custom grid md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16 mb-24 relative z-10">
         <div className="space-y-8">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 bg-gold rounded-full flex items-center justify-center font-display font-bold text-brand-navy shadow-lg shadow-brand-gold/20">
-              NN
-            </div>
-            <span className="font-display text-2xl font-bold tracking-tight">
-              EUROPE <span className="text-brand-gold">CONSULTANT</span>
-            </span>
-          </div>
+          <BrandLogo size="footer" />
           <p className="text-white/40 text-sm md:text-base leading-relaxed font-semibold">
             Authorized gatekeeper for European relocation. We deliver elite visa consultancy for specialized professionals and visionary families.
           </p>
