@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import Stats from './components/Stats';
 import Services from './components/Services';
 import Countries from './components/Countries';
+import AboutUs from './components/AboutUs';
 import WhyChooseUs from './components/WhyChooseUs';
 import Timeline from './components/Timeline';
 import Testimonials from './components/Testimonials';
@@ -31,6 +32,7 @@ export default function App() {
       <main>
         <Hero />
         <Stats />
+        <AboutUs />
         <Services />
         <Countries />
         <WhyChooseUs />
