@@ -1,5 +1,6 @@
-import { motion } from 'motion/react';
-import { CheckCircle2, FileUp, Mail, ShieldCheck } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
+import { ArrowRight, CheckCircle2, FileText, FileUp, ShieldCheck, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import type { FC, FormEvent, HTMLInputTypeAttribute } from 'react';
 
 const inputClass =
@@ -124,114 +125,217 @@ const FileField: FC<{ field: FileFieldConfig }> = ({ field }) => {
 };
 
 export default function VisaClientForm() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openForm = () => {
+    setIsOpen(true);
+    if (window.location.hash !== '#visa-form') {
+      window.history.pushState(null, '', '#visa-form');
+    }
+  };
+
+  const closeForm = () => {
+    setIsOpen(false);
+    if (window.location.hash === '#visa-form') {
+      window.history.pushState(null, '', `${window.location.pathname}${window.location.search}`);
+    }
+  };
+
+  useEffect(() => {
+    const syncModalWithHash = () => {
+      if (window.location.hash === '#visa-form') {
+        setIsOpen(true);
+      }
+    };
+
+    syncModalWithHash();
+    window.addEventListener('hashchange', syncModalWithHash);
+    return () => window.removeEventListener('hashchange', syncModalWithHash);
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeForm();
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
+
   return (
     <section id="visa-form" className="section-padding relative overflow-hidden bg-brand-accent/20">
       <div className="absolute -top-40 right-0 h-96 w-96 rounded-full bg-brand-gold/10 blur-[120px]" />
       <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-blue-500/5 blur-[120px]" />
 
       <div className="container-custom relative z-10">
-        <div className="mx-auto mb-14 max-w-3xl text-center">
+        <div className="mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-brand-gold"
+            className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-brand-navy/80 p-6 shadow-[0_35px_100px_-35px_rgba(0,0,0,0.85)] backdrop-blur-2xl md:rounded-[3rem] md:p-10 lg:p-12"
           >
-            Client Details Form
+            <div className="absolute right-0 top-0 h-64 w-64 translate-x-1/3 -translate-y-1/3 rounded-full bg-brand-gold/10 blur-[90px]" />
+            <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-gold/25 bg-brand-gold/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.24em] text-brand-gold-bright">
+                  <FileText size={15} />
+                  Client Details Form
+                </div>
+                <h2 className="mb-4 text-3xl font-bold md:text-5xl">
+                  NN Europe Visa Consultant <span className="text-gold italic">Poland Process</span>
+                </h2>
+                <p className="max-w-2xl text-base leading-relaxed text-white/60 md:text-lg">
+                  Open the form, add your client details, and upload the requested TRC, passport, and national ID documents in one guided flow.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={openForm}
+                className="inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gold px-8 py-5 text-lg font-bold text-brand-navy shadow-xl shadow-brand-gold/20 transition hover:scale-[1.01] hover:shadow-brand-gold/30 active:scale-[0.99] lg:w-auto"
+              >
+                Open Client Form <ArrowRight size={20} />
+              </button>
+            </div>
           </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-6 text-4xl font-bold md:text-6xl"
-          >
-            NN Europe Visa Consultant <span className="text-gold italic">Poland Process</span>
-          </motion.h2>
-          <p className="text-lg leading-relaxed text-white/55">
-            Fill this form carefully and upload the requested documents. Your response will be sent to
-            <span className="font-semibold text-brand-gold-bright"> navinnimesh25@gmail.com</span>.
-          </p>
         </div>
 
-        <motion.form
-          action="https://formsubmit.co/navinnimesh25@gmail.com"
-          method="POST"
-          encType="multipart/form-data"
-          onSubmit={validateUploads}
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55 }}
-          className="mx-auto max-w-5xl rounded-[2rem] border border-white/10 bg-brand-navy/80 p-6 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.75)] backdrop-blur-2xl md:rounded-[3rem] md:p-10"
-        >
-          <input type="hidden" name="_subject" value="New NN Europe Visa Consultant Form Submission" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value="https://nn-europe-consultant.vercel.app/thank-you.html" />
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="fixed inset-0 z-[120] flex items-end justify-center bg-brand-navy/85 p-0 backdrop-blur-xl sm:items-center sm:p-5"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="visa-form-title"
+            >
+              <button
+                type="button"
+                className="absolute inset-0 cursor-default"
+                aria-label="Close form"
+                onClick={closeForm}
+              />
 
-          <div className="mb-8 grid gap-4 rounded-[1.5rem] border border-brand-gold/20 bg-brand-gold/[0.07] p-5 text-sm text-white/70 md:grid-cols-2 md:p-6">
-            <div className="flex gap-3">
-              <ShieldCheck className="mt-0.5 shrink-0 text-brand-gold" size={20} />
-              <p>Only submit documents if you agree to share them for visa consultation review.</p>
-            </div>
-            <div className="flex gap-3">
-              <Mail className="mt-0.5 shrink-0 text-brand-gold" size={20} />
-              <p>After the first live submission, FormSubmit may ask the recipient email to confirm activation. Keep uploads compressed for email delivery.</p>
-            </div>
-          </div>
+              <motion.div
+                initial={{ opacity: 0, y: 42, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 32, scale: 0.98 }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="relative max-h-[92vh] w-full max-w-6xl overflow-hidden rounded-t-[2rem] border border-white/10 bg-brand-navy shadow-[0_40px_120px_rgba(0,0,0,0.7)] sm:rounded-[2.5rem]"
+              >
+                <div className="sticky top-0 z-20 border-b border-white/10 bg-brand-navy/95 px-5 py-4 backdrop-blur-xl sm:px-8 sm:py-5">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-brand-gold">Poland Process</p>
+                      <h3 id="visa-form-title" className="mt-1 text-xl font-bold text-white sm:text-2xl">
+                        Client Details Form
+                      </h3>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={closeForm}
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/70 transition hover:border-brand-gold/40 hover:text-brand-gold"
+                      aria-label="Close client details form"
+                    >
+                      <X size={22} />
+                    </button>
+                  </div>
+                </div>
 
-          <div className="grid gap-5 md:grid-cols-2">
-            {textFields.map((field) => (
-              <Field key={field.name} field={field} />
-            ))}
-          </div>
+                <div className="max-h-[calc(92vh-5.5rem)] overflow-y-auto px-5 py-6 sm:px-8 sm:py-8">
+                  <form
+                    action="https://formsubmit.co/navinnimesh25@gmail.com"
+                    method="POST"
+                    encType="multipart/form-data"
+                    onSubmit={validateUploads}
+                    className="mx-auto max-w-5xl"
+                  >
+                    <input type="hidden" name="_subject" value="New NN Europe Visa Consultant Form Submission" />
+                    <input type="hidden" name="_template" value="table" />
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="_next" value="https://nn-europe-consultant.vercel.app/thank-you.html" />
 
-          <div className="mt-8 grid gap-5 lg:grid-cols-3">
-            {fileFields.map((field) => (
-              <FileField key={field.name} field={field} />
-            ))}
-          </div>
+                    <div className="mb-7 grid gap-4 rounded-[1.5rem] border border-brand-gold/20 bg-brand-gold/[0.07] p-5 text-sm text-white/70 md:grid-cols-2 md:p-6">
+                      <div className="flex gap-3">
+                        <ShieldCheck className="mt-0.5 shrink-0 text-brand-gold" size={20} />
+                        <p>Only submit documents if you agree to share them for visa consultation review.</p>
+                      </div>
+                      <div className="flex gap-3">
+                        <FileText className="mt-0.5 shrink-0 text-brand-gold" size={20} />
+                        <p>Keep documents compressed and readable. Each upload field accepts up to 5 files, 10 MB per file.</p>
+                      </div>
+                    </div>
 
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            <fieldset className="rounded-[1.5rem] border border-white/10 bg-white/[0.025] p-5">
-              <legend className={labelClass}>Marital Status *</legend>
-              <div className="flex flex-wrap gap-4 text-white/70">
-                {['Married', 'Single'].map((option) => (
-                  <label key={option} className="flex items-center gap-2">
-                    <input required type="radio" name="marital_status" value={option} className="accent-brand-gold" />
-                    {option}
-                  </label>
-                ))}
-              </div>
-            </fieldset>
+                    <div className="grid gap-5 md:grid-cols-2">
+                      {textFields.map((field) => (
+                        <Field key={field.name} field={field} />
+                      ))}
+                    </div>
 
-            <fieldset className="rounded-[1.5rem] border border-white/10 bg-white/[0.025] p-5">
-              <legend className={labelClass}>Gender *</legend>
-              <div className="flex flex-wrap gap-4 text-white/70">
-                {['Male', 'Female'].map((option) => (
-                  <label key={option} className="flex items-center gap-2">
-                    <input required type="radio" name="gender" value={option} className="accent-brand-gold" />
-                    {option}
-                  </label>
-                ))}
-              </div>
-            </fieldset>
-          </div>
+                    <div className="mt-8 grid gap-5 lg:grid-cols-3">
+                      {fileFields.map((field) => (
+                        <FileField key={field.name} field={field} />
+                      ))}
+                    </div>
 
-          <label className="mt-8 flex gap-3 rounded-[1.5rem] border border-white/10 bg-white/[0.025] p-5 text-sm font-semibold leading-relaxed text-white/70">
-            <input required type="checkbox" name="terms_and_conditions" value="Totally agree" className="mt-1 shrink-0 accent-brand-gold" />
-            <span>
-              Terms and Conditions: <span className="text-brand-gold-bright">Totally agree</span>. I confirm the information is correct and agree to be contacted about my visa consultation request.
-            </span>
-          </label>
+                    <div className="mt-8 grid gap-5 md:grid-cols-2">
+                      <fieldset className="rounded-[1.5rem] border border-white/10 bg-white/[0.025] p-5">
+                        <legend className={labelClass}>Marital Status *</legend>
+                        <div className="flex flex-wrap gap-4 text-white/70">
+                          {['Married', 'Single'].map((option) => (
+                            <label key={option} className="flex items-center gap-2">
+                              <input required type="radio" name="marital_status" value={option} className="accent-brand-gold" />
+                              {option}
+                            </label>
+                          ))}
+                        </div>
+                      </fieldset>
 
-          <button
-            type="submit"
-            className="mt-8 flex w-full items-center justify-center gap-3 rounded-2xl bg-gold px-8 py-5 text-lg font-bold text-brand-navy shadow-xl shadow-brand-gold/20 transition hover:scale-[1.01] hover:shadow-brand-gold/30 active:scale-[0.99]"
-          >
-            Submit Client Form <CheckCircle2 size={22} />
-          </button>
-        </motion.form>
+                      <fieldset className="rounded-[1.5rem] border border-white/10 bg-white/[0.025] p-5">
+                        <legend className={labelClass}>Gender *</legend>
+                        <div className="flex flex-wrap gap-4 text-white/70">
+                          {['Male', 'Female'].map((option) => (
+                            <label key={option} className="flex items-center gap-2">
+                              <input required type="radio" name="gender" value={option} className="accent-brand-gold" />
+                              {option}
+                            </label>
+                          ))}
+                        </div>
+                      </fieldset>
+                    </div>
+
+                    <label className="mt-8 flex gap-3 rounded-[1.5rem] border border-white/10 bg-white/[0.025] p-5 text-sm font-semibold leading-relaxed text-white/70">
+                      <input required type="checkbox" name="terms_and_conditions" value="Totally agree" className="mt-1 shrink-0 accent-brand-gold" />
+                      <span>
+                        Terms and Conditions: <span className="text-brand-gold-bright">Totally agree</span>. I confirm the information is correct and agree to be contacted about my visa consultation request.
+                      </span>
+                    </label>
+
+                    <div className="sticky bottom-0 -mx-5 mt-8 border-t border-white/10 bg-brand-navy/95 px-5 py-4 backdrop-blur-xl sm:-mx-8 sm:px-8">
+                      <button
+                        type="submit"
+                        className="flex w-full items-center justify-center gap-3 rounded-2xl bg-gold px-8 py-5 text-lg font-bold text-brand-navy shadow-xl shadow-brand-gold/20 transition hover:scale-[1.01] hover:shadow-brand-gold/30 active:scale-[0.99]"
+                      >
+                        Submit Client Form <CheckCircle2 size={22} />
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

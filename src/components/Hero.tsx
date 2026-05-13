@@ -101,7 +101,7 @@ export default function Hero() {
               </div>
               <h3 className="text-2xl font-bold text-white md:text-3xl">Ready to start your Poland process?</h3>
               <p className="mt-4 text-base leading-relaxed text-white/60">
-                Complete the client details form with your contact information and required documents. The details will be sent to the NN Europe Consultant email for review.
+                Complete the client details form with your contact information and required documents so we can review your file and contact you for the next step.
               </p>
               <div className="my-7 h-px w-full bg-linear-to-r from-brand-gold/60 via-white/10 to-transparent" />
               <ul className="space-y-3 text-sm font-semibold text-white/70">
