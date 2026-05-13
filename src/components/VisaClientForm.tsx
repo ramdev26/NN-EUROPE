@@ -212,7 +212,8 @@ export default function VisaClientForm() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="fixed inset-0 z-[120] flex items-end justify-center bg-brand-navy/85 p-0 backdrop-blur-xl sm:items-center sm:p-5"
+              className="fixed inset-0 flex items-end justify-center bg-brand-navy p-0 sm:items-center sm:p-5"
+              style={{ zIndex: 9999 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -232,9 +233,9 @@ export default function VisaClientForm() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 32, scale: 0.98 }}
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                className="relative max-h-[92vh] w-full max-w-6xl overflow-hidden rounded-t-[2rem] border border-white/10 bg-brand-navy shadow-[0_40px_120px_rgba(0,0,0,0.7)] sm:rounded-[2.5rem]"
+                className="relative max-h-[88vh] w-full max-w-6xl overflow-hidden rounded-t-[2rem] border border-white/10 bg-[#070b16] shadow-[0_40px_120px_rgba(0,0,0,0.9)] sm:max-h-[86vh] sm:rounded-[2.5rem]"
               >
-                <div className="sticky top-0 z-20 border-b border-white/10 bg-brand-navy/95 px-5 py-4 backdrop-blur-xl sm:px-8 sm:py-5">
+                <div className="border-b border-white/10 bg-[#070b16] px-5 py-4 sm:px-8 sm:py-5">
                   <div className="flex items-center justify-between gap-4">
                     <div>
                       <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-brand-gold">Poland Process</p>
@@ -253,7 +254,7 @@ export default function VisaClientForm() {
                   </div>
                 </div>
 
-                <div className="max-h-[calc(92vh-5.5rem)] overflow-y-auto px-5 py-6 sm:px-8 sm:py-8">
+                <div className="max-h-[calc(88vh-5.5rem)] overflow-y-auto bg-[#070b16] px-5 py-6 sm:max-h-[calc(86vh-5.75rem)] sm:px-8 sm:py-8">
                   <form
                     action="https://formsubmit.co/navinnimesh25@gmail.com"
                     method="POST"
@@ -322,14 +323,12 @@ export default function VisaClientForm() {
                       </span>
                     </label>
 
-                    <div className="sticky bottom-0 -mx-5 mt-8 border-t border-white/10 bg-brand-navy/95 px-5 py-4 backdrop-blur-xl sm:-mx-8 sm:px-8">
-                      <button
-                        type="submit"
-                        className="flex w-full items-center justify-center gap-3 rounded-2xl bg-gold px-8 py-5 text-lg font-bold text-brand-navy shadow-xl shadow-brand-gold/20 transition hover:scale-[1.01] hover:shadow-brand-gold/30 active:scale-[0.99]"
-                      >
-                        Submit Client Form <CheckCircle2 size={22} />
-                      </button>
-                    </div>
+                    <button
+                      type="submit"
+                      className="mt-8 flex w-full items-center justify-center gap-3 rounded-2xl bg-gold px-8 py-5 text-lg font-bold text-brand-navy shadow-xl shadow-brand-gold/20 transition hover:scale-[1.01] hover:shadow-brand-gold/30 active:scale-[0.99]"
+                    >
+                      Submit Client Form <CheckCircle2 size={22} />
+                    </button>
                   </form>
                 </div>
               </motion.div>
