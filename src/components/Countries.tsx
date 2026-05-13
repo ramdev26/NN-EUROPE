@@ -43,8 +43,7 @@ export default function Countries() {
               Strategic <span className="text-gold italic">Gateways</span> to Europe
             </motion.h2>
             <p className="text-lg text-white/50 leading-relaxed">
-              We maintain direct legal partnerships in these specific markets, 
-              guaranteeing the fastest processing times and highest approval ratios in the industry.
+              We help you understand the requirements, documents, and preparation steps for selected European destinations, with a special focus on Poland work visa support.
             </p>
           </div>
           <button className="bg-white/5 hover:bg-brand-gold hover:text-brand-navy border border-white/10 px-8 py-4 rounded-full font-bold transition-all flex items-center gap-2 group w-fit">

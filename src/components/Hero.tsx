@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, CheckCircle2, ChevronDown, ShieldCheck, Zap, Users } from 'lucide-react';
+import { ArrowRight, CheckCircle2, FileText, MessageCircle, ShieldCheck, UserCheck } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -33,7 +33,7 @@ export default function Hero() {
           >
             <div className="w-2 h-2 rounded-full bg-brand-gold animate-pulse" />
             <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-brand-gold-bright">
-              Authorized European Immigration Partner
+              Personal Poland Visa Consultation Support
             </span>
           </motion.div>
           
@@ -51,25 +51,25 @@ export default function Hero() {
           </h1>
 
           <p className="text-base md:text-lg lg:text-xl text-white/80 mb-10 max-w-2xl leading-relaxed font-medium">
-            Premium consultancy for visa processing, relocation, and career expansion in the heart of Europe.
-            Trusted by global professionals for seamless, high-success transitions.
+            Clear guidance for Poland work visa preparation, documentation, embassy steps, and the Schengen entry journey.
+            Built for hardworking clients who want honest support without false promises.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-5">
-            <button className="bg-gold text-brand-navy px-10 py-5 rounded-full font-bold text-lg hover:shadow-[0_15px_40px_rgba(212,175,55,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-3">
-              Book Free Consultation <ArrowRight size={22} />
-            </button>
-            <button className="glass-dark border border-white/10 px-10 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-all duration-300 text-center">
+            <a href="#visa-form" className="bg-gold text-brand-navy px-10 py-5 rounded-full font-bold text-lg hover:shadow-[0_15px_40px_rgba(212,175,55,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-3">
+              Start Client Form <ArrowRight size={22} />
+            </a>
+            <a href="#services" className="glass-dark border border-white/10 px-10 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-all duration-300 text-center">
               Explore Services
-            </button>
+            </a>
           </div>
 
           <div className="mt-12 md:mt-16 flex flex-wrap gap-x-8 gap-y-4 items-center">
             {[
-              { icon: ShieldCheck, text: 'Licensed Consultants' },
-              { icon: Zap, text: 'Fast-Track Processing' },
-              { icon: CheckCircle2, text: '99% Success Rate' },
-              { icon: Users, text: '15k+ Global Profiles' },
+              { icon: ShieldCheck, text: 'Transparent Guidance' },
+              { icon: FileText, text: 'Document Support' },
+              { icon: CheckCircle2, text: 'Step-by-Step Process' },
+              { icon: UserCheck, text: 'Personal Follow-Up' },
             ].map((badge, i) => (
               <motion.div 
                 key={i} 
@@ -85,7 +85,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Floating Form */}
+        {/* Client form callout */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -95,68 +95,36 @@ export default function Hero() {
           <div className="rounded-[1.75rem] border border-white/15 bg-brand-navy/55 p-8 shadow-[0_40px_80px_-24px_rgba(0,0,0,0.65)] backdrop-blur-2xl relative overflow-hidden ring-1 ring-white/5 group md:rounded-[2rem] md:p-10">
             <div className="absolute top-0 right-0 w-48 h-48 bg-brand-gold/15 blur-[100px] rounded-full -mr-24 -mt-24 group-hover:bg-brand-gold/25 transition-all duration-700" />
 
-            <div className="relative z-10 mb-8">
-              <h3 className="text-xl font-bold text-white md:text-2xl">Eligibility check</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/50">
-                Tell us a little about your plans — we will match you with the right track.
+            <div className="relative z-10">
+              <div className="mb-7 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-brand-gold/30 bg-brand-gold/10 text-brand-gold">
+                <MessageCircle size={28} />
+              </div>
+              <h3 className="text-2xl font-bold text-white md:text-3xl">Ready to start your Poland process?</h3>
+              <p className="mt-4 text-base leading-relaxed text-white/60">
+                Complete the client details form with your contact information and required documents. The details will be sent to the NN Europe Consultant email for review.
               </p>
-              <div className="mt-5 h-px w-full max-w-[12rem] bg-linear-to-r from-brand-gold/70 to-transparent" />
-            </div>
-
-            <form className="relative z-10 space-y-5">
-              <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold-bright">
-                  Full name
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. Maria Kowalski"
-                  autoComplete="name"
-                  className="w-full rounded-2xl border border-white/15 bg-white/10 px-5 py-4 text-[15px] text-white shadow-inner shadow-black/20 placeholder:text-white/40 focus:border-brand-gold focus:bg-white/[0.14] focus:outline-hidden focus:ring-2 focus:ring-brand-gold/25"
-                />
-              </div>
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold-bright">
-                    Destination
-                  </label>
-                  <div className="relative">
-                    <select className="w-full cursor-pointer appearance-none rounded-2xl border border-white/15 bg-white/10 py-4 pr-11 pl-4 text-[15px] text-white shadow-inner shadow-black/20 focus:border-brand-gold focus:bg-white/[0.14] focus:outline-hidden focus:ring-2 focus:ring-brand-gold/25 [&>option]:bg-brand-navy [&>option]:text-white">
-                      <option>Poland</option>
-                      <option>Serbia</option>
-                      <option>Germany</option>
-                      <option>Romania</option>
-                    </select>
-                    <ChevronDown
-                      className="pointer-events-none absolute right-3.5 top-1/2 size-5 -translate-y-1/2 text-white/35"
-                      aria-hidden
-                    />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold-bright">
-                    Visa type
-                  </label>
-                  <div className="relative">
-                    <select className="w-full cursor-pointer appearance-none rounded-2xl border border-white/15 bg-white/10 py-4 pr-11 pl-4 text-[15px] text-white shadow-inner shadow-black/20 focus:border-brand-gold focus:bg-white/[0.14] focus:outline-hidden focus:ring-2 focus:ring-brand-gold/25 [&>option]:bg-brand-navy [&>option]:text-white">
-                      <option>Work</option>
-                      <option>Study</option>
-                      <option>Family</option>
-                    </select>
-                    <ChevronDown
-                      className="pointer-events-none absolute right-3.5 top-1/2 size-5 -translate-y-1/2 text-white/35"
-                      aria-hidden
-                    />
-                  </div>
-                </div>
-              </div>
-              <button
-                type="button"
-                className="mt-2 w-full rounded-2xl bg-gold py-5 text-lg font-bold text-brand-navy shadow-xl shadow-brand-gold/20 transition-all hover:scale-[1.01] hover:shadow-brand-gold/30 active:scale-[0.99]"
+              <div className="my-7 h-px w-full bg-linear-to-r from-brand-gold/60 via-white/10 to-transparent" />
+              <ul className="space-y-3 text-sm font-semibold text-white/70">
+                <li className="flex gap-3">
+                  <CheckCircle2 className="mt-0.5 shrink-0 text-brand-gold" size={18} />
+                  Poland work visa consultation
+                </li>
+                <li className="flex gap-3">
+                  <CheckCircle2 className="mt-0.5 shrink-0 text-brand-gold" size={18} />
+                  TRC, passport, and national ID uploads
+                </li>
+                <li className="flex gap-3">
+                  <CheckCircle2 className="mt-0.5 shrink-0 text-brand-gold" size={18} />
+                  Personal review and follow-up by email or WhatsApp
+                </li>
+              </ul>
+              <a
+                href="#visa-form"
+                className="mt-8 flex w-full items-center justify-center gap-3 rounded-2xl bg-gold py-5 text-lg font-bold text-brand-navy shadow-xl shadow-brand-gold/20 transition-all hover:scale-[1.01] hover:shadow-brand-gold/30 active:scale-[0.99]"
               >
-                Check my eligibility
-              </button>
-            </form>
+                Fill Visa Form <ArrowRight size={20} />
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>

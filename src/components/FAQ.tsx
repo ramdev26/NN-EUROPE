@@ -20,8 +20,8 @@ const faqs = [
     a: 'For most Work Visas, yes. However, some countries have job-seeker visas or specialized tracks for high-demand professionals.',
   },
   {
-    q: 'What is your success rate?',
-    a: 'We pride ourselves on a 98.7% success rate for all complete and verified document submissions.',
+    q: 'Do you guarantee visa approval?',
+    a: 'No. Visa decisions are made by the relevant authorities. We help you prepare documents, understand steps, and avoid common mistakes, but we do not make false approval promises.',
   },
 ];
 
@@ -37,7 +37,7 @@ export default function FAQ() {
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Common <span className="text-gold italic">Queries</span>
           </h2>
-          <p className="text-white/50 text-lg">Everything you need to know about the European residency & relocation process.</p>
+          <p className="text-white/50 text-lg">Clear answers about visa preparation, documents, and client support.</p>
         </div>
 
         <div className="space-y-4">

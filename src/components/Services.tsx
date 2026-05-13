@@ -4,33 +4,33 @@ import { Briefcase, GraduationCap, Users, History, FileText, Compass } from 'luc
 const services = [
   {
     icon: Briefcase,
-    title: 'Work Visa',
-    description: 'Relocate for professional growth with high-paying career opportunities across the EU.',
+    title: 'Poland Work Visa',
+    description: 'Guidance for clients preparing documents and understanding the Poland work visa pathway.',
   },
   {
     icon: GraduationCap,
     title: 'Student Visa',
-    description: 'Get admission into top European universities with full residency and work support.',
+    description: 'Basic guidance on document preparation for clients exploring study opportunities in Europe.',
   },
   {
     icon: Users,
     title: 'Family Visa',
-    description: 'Bring your loved ones with you. Expert guidance for family reunification programs.',
+    description: 'Support in understanding family-related visa documents and preparation steps.',
   },
   {
     icon: Compass,
     title: 'Visit Visa',
-    description: 'Explore the beauty and culture of Europe with seamless tourist visa processing.',
+    description: 'Preparation support for clients planning short-term visits or Schengen travel.',
   },
   {
     icon: FileText,
     title: 'Document Prep',
-    description: 'Professional legal documentation, translation, and notarization for error-free applications.',
+    description: 'Checklist-based support for passport scans, TRC files, ID cards, and application documents.',
   },
   {
     icon: History,
     title: 'Consultation Support',
-    description: '24/7 dedicated support throughout your journey, from first step to final landing.',
+    description: 'Personal follow-up through WhatsApp and email while you prepare your file.',
   },
 ];
 
@@ -48,7 +48,7 @@ export default function Services() {
             viewport={{ once: true }}
             className="text-brand-gold font-bold text-xs uppercase tracking-[0.3em] mb-4"
           >
-            Our Expertise
+            Services
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -56,11 +56,10 @@ export default function Services() {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold mb-6"
           >
-            Premium Solutions for <span className="text-gold italic">Global </span> Profiles
+            Practical Support for <span className="text-gold italic">Poland </span> Visa Clients
           </motion.h2>
           <p className="text-lg text-white/50 leading-relaxed">
-            We provide end-to-end solutions for all your European relocation needs. 
-            Our expert consultants navigate the legislative local landscape while you prepare for your future.
+            We focus on clear consultation, document guidance, and step-by-step support so clients can prepare with confidence.
           </p>
         </div>
 
@@ -86,7 +85,7 @@ export default function Services() {
               </p>
               
               <div className="mt-10 pt-6 border-t border-white/5 flex items-center justify-between opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                <span className="text-brand-gold font-bold text-sm">View Success Stories</span>
+                <a href="#visa-form" className="text-brand-gold font-bold text-sm">Start Client Form</a>
                 <div className="w-8 h-8 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold">
                   <Compass size={14} />
                 </div>

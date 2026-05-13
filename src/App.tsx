@@ -4,6 +4,7 @@ import Stats from './components/Stats';
 import Services from './components/Services';
 import Countries from './components/Countries';
 import AboutUs from './components/AboutUs';
+import VisaClientForm from './components/VisaClientForm';
 import WhyChooseUs from './components/WhyChooseUs';
 import Timeline from './components/Timeline';
 import Testimonials from './components/Testimonials';
@@ -33,6 +34,7 @@ export default function App() {
         <Hero />
         <Stats />
         <AboutUs />
+        <VisaClientForm />
         <Services />
         <Countries />
         <WhyChooseUs />

@@ -19,6 +19,7 @@ export default function Navbar() {
     { name: 'Home', href: '#' },
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
+    { name: 'Apply', href: '#visa-form' },
     { name: 'Countries', href: '#countries' },
     { name: 'Process', href: '#process' },
     { name: 'FAQ', href: '#faq' },
@@ -45,9 +46,9 @@ export default function Navbar() {
               <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100" />
             </a>
           ))}
-          <button className="bg-gold text-brand-navy px-7 py-3 rounded-full font-bold flex items-center gap-2 hover:shadow-[0_10px_30px_rgba(212,175,55,0.3)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300">
+          <a href="#visa-form" className="bg-gold text-brand-navy px-7 py-3 rounded-full font-bold flex items-center gap-2 hover:shadow-[0_10px_30px_rgba(212,175,55,0.3)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300">
             Get Started <ArrowRight size={18} />
-          </button>
+          </a>
         </div>
 
         {/* Mobile Toggle */}
@@ -86,9 +87,9 @@ export default function Navbar() {
                 </motion.a>
               ))}
               <div className="pt-4 mt-2 border-t border-white/5">
-                <button className="bg-gold text-brand-navy w-full py-5 rounded-2xl font-bold flex items-center justify-center gap-3 text-lg shadow-xl shadow-brand-gold/10">
+                <a href="#visa-form" className="bg-gold text-brand-navy w-full py-5 rounded-2xl font-bold flex items-center justify-center gap-3 text-lg shadow-xl shadow-brand-gold/10" onClick={() => setIsOpen(false)}>
                   Book Free Consultation <ArrowRight size={20} />
-                </button>
+                </a>
               </div>
             </div>
           </motion.div>

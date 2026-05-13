@@ -4,21 +4,21 @@ import { Star, Quote } from 'lucide-react';
 const testimonials = [
   {
     name: 'Sarah Mitchell',
-    role: 'Software Engineer',
+    role: 'Work visa client',
     image: 'https://i.pravatar.cc/150?u=sarah',
-    content: 'NN Europe made my move to Germany incredibly smooth. Their expertise in work visa processing is unmatched.',
+    content: 'The document checklist and step-by-step explanation helped me understand what I needed to prepare.',
   },
   {
     name: 'Robert C. ',
-    role: 'Business Owner',
+    role: 'Poland process client',
     image: 'https://i.pravatar.cc/150?u=robert',
-    content: 'I was struggling with Poland business visa for months. NN Europe resolved it in just 3 weeks. Highly recommended!',
+    content: 'The guidance was clear and honest. I knew what was missing from my file before moving forward.',
   },
   {
     name: 'Elena Petrova',
-    role: 'Project Manager',
+    role: 'Consultation client',
     image: 'https://i.pravatar.cc/150?u=elena',
-    content: 'The level of professionalism and care they show is rare. They didn’t just help with the visa, but with settling in too.',
+    content: 'I appreciated the personal support and follow-up through each stage of document preparation.',
   },
 ];
 
@@ -30,9 +30,9 @@ export default function Testimonials() {
         <div className="text-center mb-20 max-w-2xl mx-auto">
           <div className="text-brand-gold font-bold text-xs uppercase tracking-[0.3em] mb-4">Client Voices</div>
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Trusted by <span className="text-gold italic">Global</span> Leaders
+            Guided with <span className="text-gold italic">Care</span> and Clarity
           </h2>
-          <p className="text-white/50 text-lg">Success stories from professionals who are now thriving in the heart of Europe.</p>
+          <p className="text-white/50 text-lg">What clients value most: clear instructions, honest feedback, and personal follow-up.</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">

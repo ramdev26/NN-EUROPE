@@ -4,23 +4,23 @@ import { Target, Shield, Clock, Award } from 'lucide-react';
 const reasons = [
   {
     icon: Target,
-    title: 'Strategic Guidance',
-    desc: 'Transparent and strategic approach tailored to your specific profile and career goals.',
+    title: 'Profile-Based Guidance',
+    desc: 'A clear review of your skills, background, and goals before suggesting the next step.',
   },
   {
     icon: Shield,
-    title: 'Certified Expertise',
-    desc: 'Registered with EU immigration authorities, ensuring legal compliance and high security.',
+    title: 'Honest Communication',
+    desc: 'No false promises, no pressure. You receive practical guidance about the process and documents.',
   },
   {
     icon: Clock,
-    title: 'Fast-Track Processing',
-    desc: 'Optimized internal processes and direct embassy communication for accelerated approvals.',
+    title: 'Step-by-Step Support',
+    desc: 'Guidance through document preparation, application stages, and embassy-related procedures.',
   },
   {
     icon: Award,
-    title: 'Post-Landing Support',
-    desc: 'We don’t stop at the visa. We help you find residential housing and settle into your new community.',
+    title: 'Client-Focused Service',
+    desc: 'Personal follow-up so you understand what is needed and what to prepare next.',
   },
 ];
 
@@ -48,7 +48,7 @@ export default function WhyChooseUs() {
               Unparalleled <span className="text-gold italic">Standard</span> of Service
             </motion.h2>
             <p className="text-xl text-white/60 mb-12 leading-relaxed">
-              Global relocation is a profound milestone. We deliver the precision and security your future demands, through certified legal expertise.
+              Moving toward Europe is an important life decision. We keep the process clear, practical, and focused on genuine opportunities.
             </p>
             
             <div className="grid sm:grid-cols-2 gap-10">
@@ -97,8 +97,8 @@ export default function WhyChooseUs() {
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -bottom-10 -left-10 md:left-20 glass p-8 rounded-3xl border-white/10 shadow-3xl z-20 max-w-[200px]"
             >
-              <div className="text-4xl font-display font-bold text-gold mb-2">99%</div>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 leading-tight">Post-Landing Satisfaction Ratio</p>
+              <div className="text-4xl font-display font-bold text-gold mb-2">1:1</div>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 leading-tight">Personal guidance for each client</p>
             </motion.div>
 
             <div className="absolute top-20 -right-8 glass p-5 rounded-2xl border-white/10 shadow-2xl z-20 hidden md:block">

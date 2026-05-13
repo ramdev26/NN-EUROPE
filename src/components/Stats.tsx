@@ -1,11 +1,11 @@
 import { motion } from 'motion/react';
-import { Trophy, CheckCircle2, Globe, Users } from 'lucide-react';
+import { BriefcaseBusiness, ClipboardCheck, FileText, MessagesSquare } from 'lucide-react';
 
 const stats = [
-  { icon: CheckCircle2, value: '98.7%', label: 'Visa approval' },
-  { icon: Users, value: '15k+', label: 'Happy clients' },
-  { icon: Globe, value: '25+', label: 'Destinations' },
-  { icon: Trophy, value: '12+', label: 'Years experience' },
+  { icon: BriefcaseBusiness, value: 'Poland', label: 'Work visa focus' },
+  { icon: FileText, value: 'Docs', label: 'File preparation' },
+  { icon: ClipboardCheck, value: 'Steps', label: 'Embassy guidance' },
+  { icon: MessagesSquare, value: 'Care', label: 'Personal support' },
 ] as const;
 
 export default function Stats() {
@@ -27,9 +27,11 @@ export default function Stats() {
 
           <div className="relative z-10 mb-8 text-center md:mb-10">
             <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-brand-gold-bright/90 md:text-xs">
-              Track record
+              How we support you
             </p>
-            <p className="mt-2 font-display text-lg text-white/50 md:text-xl">Numbers that reflect real outcomes</p>
+            <p className="mt-2 font-display text-lg text-white/50 md:text-xl">
+              Practical help for every important part of your application
+            </p>
           </div>
 
           <div className="relative z-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
@@ -46,7 +48,7 @@ export default function Stats() {
                   <stat.icon className="size-[1.35rem] md:size-7" strokeWidth={2} />
                 </div>
 
-                <p className="font-display text-[1.65rem] font-bold leading-none tracking-tight text-gold tabular-nums sm:text-4xl md:text-5xl lg:text-[2.75rem] lg:leading-none">
+                <p className="font-display text-[1.65rem] font-bold leading-none tracking-tight text-gold sm:text-4xl md:text-5xl lg:text-[2.75rem] lg:leading-none">
                   {stat.value}
                 </p>
 

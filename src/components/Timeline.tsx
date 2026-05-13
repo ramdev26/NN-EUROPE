@@ -8,17 +8,17 @@ const steps = [
   },
   {
     title: 'Documentation',
-    desc: 'Meticulous preparation of all required legal documents and translations.',
+    desc: 'Organize required documents, scans, uploads, and details before submission.',
     icon: '02',
   },
   {
     title: 'Visa Processing',
-    desc: 'Submission and active follow-up with embassies to ensure fast approval.',
+    desc: 'Guidance on the application steps and embassy-related requirements.',
     icon: '03',
   },
   {
     title: 'Travel Support',
-    desc: 'Flight booking, accommodation assistance, and on-ground settlement.',
+    desc: 'Basic preparation support for travel planning after the application stage.',
     icon: '04',
   },
 ];
@@ -30,9 +30,9 @@ export default function Timeline() {
         <div className="text-center mb-24 max-w-2xl mx-auto">
           <div className="text-brand-gold font-bold text-xs uppercase tracking-[0.3em] mb-4">The Journey</div>
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Our <span className="text-gold italic">Elite</span> Methodology
+            Our <span className="text-gold italic">Clear</span> Process
           </h2>
-          <p className="text-white/50 text-lg">A meticulous, step-by-step roadmap designed for your successful relocation.</p>
+          <p className="text-white/50 text-lg">A simple roadmap that helps you understand what to prepare and what happens next.</p>
         </div>
 
         <div className="relative">
