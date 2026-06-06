@@ -42,7 +42,9 @@ npm install
 npm run dev
 ```
 
-The dev server listens on **port 3000** by default (`http://localhost:3000`). No API keys or `.env` files are required for the static marketing experience.
+The dev server listens on **port 3000** by default (`http://localhost:3000`).
+
+For local testing of the visa form submission flow, use `npx vercel dev` with the required environment variables from `.env.example`.
 
 ### Other scripts
 
@@ -56,24 +58,41 @@ The dev server listens on **port 3000** by default (`http://localhost:3000`). No
 
 ## Deployment
 
-Build static assets, then host `dist/` on any static host (e.g. GitHub Pages, Netlify, Vercel, Cloudflare Pages):
+This project is deployed on Vercel as a static Vite site with serverless API routes for the visa form.
 
-```bash
-npm run build
-```
+### Visa form email setup
 
-Point the host’s “publish directory” to **`dist`**.
+The landing page visa form sends submissions to **navinnimesh25@gmail.com** through Vercel serverless functions. Configure these environment variables in the Vercel project:
+
+| Variable | Required | Description |
+| -------- | -------- | ----------- |
+| `RESEND_API_KEY` | Yes | API key from [Resend](https://resend.com) for sending submission emails |
+| `BLOB_READ_WRITE_TOKEN` | Yes | Token from [Vercel Blob](https://vercel.com/docs/storage/vercel-blob) for uploaded documents |
+| `VISA_FORM_TO_EMAIL` | No | Defaults to `navinnimesh25@gmail.com` |
+| `VISA_FORM_FROM_EMAIL` | No | Defaults to `NN Europe Consultant <onboarding@resend.dev>` |
+
+Steps:
+
+1. Create a Resend account and generate an API key.
+2. In Vercel, open **Storage** and add a **Blob** store for the project.
+3. Add `RESEND_API_KEY` and `BLOB_READ_WRITE_TOKEN` to the Vercel project environment variables.
+4. Redeploy the site.
+
+After deployment, submit a test form from the live site and confirm the email arrives at `navinnimesh25@gmail.com`.
 
 ---
 
 ## Project layout
 
 ```
+api/
+  submit-visa-form.ts  # Sends form submissions by email
+  upload.ts            # Handles document uploads to Vercel Blob
 src/
-  App.tsx           # Page shell, scroll progress, section order
-  main.tsx          # React entry
-  index.css         # Global styles & Tailwind
-  components/       # Navbar, Hero, Services, FAQ, Footer, etc.
+  App.tsx              # Page shell, scroll progress, section order
+  main.tsx             # React entry
+  index.css            # Global styles & Tailwind
+  components/          # Navbar, Hero, Services, FAQ, Footer, etc.
 ```
 
 ---
