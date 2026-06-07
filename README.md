@@ -62,21 +62,31 @@ This project is deployed on Vercel as a static Vite site with serverless API rou
 
 ### Visa form email setup
 
-The landing page visa form sends submissions to **navinnimesh25@gmail.com** through Vercel serverless functions. Configure these environment variables in the Vercel project:
+The landing page visa form sends submissions to **navinnimesh25@gmail.com** using your existing Gmail account and Vercel Blob for uploaded documents.
 
 | Variable | Required | Description |
 | -------- | -------- | ----------- |
-| `RESEND_API_KEY` | Yes | API key from [Resend](https://resend.com) for sending submission emails |
-| `BLOB_READ_WRITE_TOKEN` | Yes | Token from [Vercel Blob](https://vercel.com/docs/storage/vercel-blob) for uploaded documents |
+| `GMAIL_USER` | Yes | Your Gmail address, e.g. `navinnimesh25@gmail.com` |
+| `GMAIL_APP_PASSWORD` | Yes | A Google App Password for sending email |
+| `BLOB_READ_WRITE_TOKEN` | Yes | Token from Vercel **Storage → Blob** for uploaded documents |
 | `VISA_FORM_TO_EMAIL` | No | Defaults to `navinnimesh25@gmail.com` |
-| `VISA_FORM_FROM_EMAIL` | No | Defaults to `NN Europe Consultant <onboarding@resend.dev>` |
 
-Steps:
+#### Step 1: Create a Gmail App Password
 
-1. Create a Resend account and generate an API key.
-2. In Vercel, open **Storage** and add a **Blob** store for the project.
-3. Add `RESEND_API_KEY` and `BLOB_READ_WRITE_TOKEN` to the Vercel project environment variables.
-4. Redeploy the site.
+1. Sign in to [Google Account Security](https://myaccount.google.com/security)
+2. Turn on **2-Step Verification** if it is not already enabled
+3. Open **App passwords**
+4. Create a new app password for **Mail**
+5. Copy the 16-character password
+
+#### Step 2: Add Vercel environment variables
+
+1. In Vercel, open **Storage** and add a **Blob** store for the project
+2. Go to **Settings → Environment Variables** and add:
+   - `GMAIL_USER` = `navinnimesh25@gmail.com`
+   - `GMAIL_APP_PASSWORD` = your 16-character app password
+   - `BLOB_READ_WRITE_TOKEN` = created automatically when Blob storage is added
+3. Redeploy the site
 
 After deployment, submit a test form from the live site and confirm the email arrives at `navinnimesh25@gmail.com`.
 

@@ -1,9 +1,7 @@
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 const TO_EMAIL = process.env.VISA_FORM_TO_EMAIL ?? 'navinnimesh25@gmail.com';
-const FROM_EMAIL =
-  process.env.VISA_FORM_FROM_EMAIL ?? 'NN Europe Consultant <onboarding@resend.dev>';
 
 type UploadedFile = {
   field: string;
@@ -96,7 +94,10 @@ export default async function handler(request: VercelRequest, response: VercelRe
     return response.status(405).json({ error: 'Method not allowed' });
   }
 
-  if (!process.env.RESEND_API_KEY) {
+  const gmailUser = process.env.GMAIL_USER;
+  const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
+
+  if (!gmailUser || !gmailAppPassword) {
     return response.status(500).json({ error: 'Email service is not configured.' });
   }
 
@@ -112,10 +113,16 @@ export default async function handler(request: VercelRequest, response: VercelRe
   }
 
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: gmailUser,
+        pass: gmailAppPassword,
+      },
+    });
 
-    await resend.emails.send({
-      from: FROM_EMAIL,
+    await transporter.sendMail({
+      from: `"NN Europe Consultant" <${gmailUser}>`,
       to: TO_EMAIL,
       replyTo,
       subject: 'New NN Europe Visa Consultant Form Submission',
