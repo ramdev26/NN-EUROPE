@@ -1,5 +1,6 @@
+import { upload } from '@vercel/blob/client';
 import { AnimatePresence, motion } from 'motion/react';
-import { ArrowRight, CheckCircle2, FileText, FileUp, ShieldCheck, X } from 'lucide-react';
+import { ArrowRight, CheckCircle2, FileText, FileUp, Loader2, ShieldCheck, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import type { FC, FormEvent, HTMLInputTypeAttribute } from 'react';
@@ -60,25 +61,31 @@ const fileFields: FileFieldConfig[] = [
   },
 ];
 
-function validateUploads(event: FormEvent<HTMLFormElement>) {
-  const fileInputs = Array.from(event.currentTarget.querySelectorAll('input[type="file"]')) as HTMLInputElement[];
+function validateUploads(form: HTMLFormElement) {
+  const fileInputs = Array.from(form.querySelectorAll('input[type="file"]')) as HTMLInputElement[];
 
   for (const input of fileInputs) {
     const files = Array.from(input.files ?? []);
     if (files.length > maxFilesPerField) {
-      event.preventDefault();
       window.alert(`Please upload no more than ${maxFilesPerField} files for ${input.dataset.label}.`);
-      return;
+      return false;
     }
 
     const oversized = files.find((file) => file.size > maxFileBytes);
     if (oversized) {
-      event.preventDefault();
       window.alert(`${oversized.name} is larger than 10 MB. Please compress it or upload a smaller file.`);
-      return;
+      return false;
     }
   }
+
+  return true;
 }
+
+type UploadedFile = {
+  field: string;
+  fileName: string;
+  url: string;
+};
 
 const Field: FC<{ field: TextField }> = ({ field }) => {
   const { label, name, type, autoComplete } = field;
@@ -127,6 +134,8 @@ const FileField: FC<{ field: FileFieldConfig }> = ({ field }) => {
 
 export default function VisaClientForm() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const openForm = () => {
     setIsOpen(true);
@@ -184,6 +193,79 @@ export default function VisaClientForm() {
     };
   }, [isOpen]);
 
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (isSubmitting) return;
+
+    const form = event.currentTarget;
+    if (!validateUploads(form)) return;
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const formData = new FormData(form);
+      const uploadedFiles: UploadedFile[] = [];
+
+      for (const field of fileFields) {
+        const input = form.querySelector(`input[name="${field.name}"]`) as HTMLInputElement | null;
+        const files = Array.from(input?.files ?? []);
+
+        for (const file of files) {
+          const blob = await upload(file.name, file, {
+            access: 'public',
+            handleUploadUrl: '/api/upload',
+          });
+
+          uploadedFiles.push({
+            field: field.label,
+            fileName: file.name,
+            url: blob.url,
+          });
+        }
+      }
+
+      const payload = {
+        email: String(formData.get('email') ?? ''),
+        email_address: String(formData.get('email_address') ?? ''),
+        full_name: String(formData.get('full_name') ?? ''),
+        date_of_birth: String(formData.get('date_of_birth') ?? ''),
+        nationality: String(formData.get('nationality') ?? ''),
+        national_id_card_number: String(formData.get('national_id_card_number') ?? ''),
+        passport_number: String(formData.get('passport_number') ?? ''),
+        company_address: String(formData.get('company_address') ?? ''),
+        current_address: String(formData.get('current_address') ?? ''),
+        whatsapp_number: String(formData.get('whatsapp_number') ?? ''),
+        current_country_phone: String(formData.get('current_country_phone') ?? ''),
+        currently_work_country: String(formData.get('currently_work_country') ?? ''),
+        current_company_name: String(formData.get('current_company_name') ?? ''),
+        current_job_position: String(formData.get('current_job_position') ?? ''),
+        marital_status: String(formData.get('marital_status') ?? ''),
+        gender: String(formData.get('gender') ?? ''),
+        terms_and_conditions: String(formData.get('terms_and_conditions') ?? ''),
+        files: uploadedFiles,
+      };
+
+      const response = await fetch('/api/submit-visa-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const result = (await response.json().catch(() => null)) as { error?: string } | null;
+
+      if (!response.ok) {
+        throw new Error(result?.error ?? 'Failed to submit the form. Please try again.');
+      }
+
+      window.location.href = '/thank-you.html';
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Failed to submit the form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const modal = createPortal(
     <AnimatePresence>
       {isOpen && (
@@ -231,18 +313,7 @@ export default function VisaClientForm() {
             </div>
 
             <div className="max-h-[calc(88vh-5.5rem)] overflow-y-auto bg-[#070b16] px-5 py-6 sm:max-h-[calc(86vh-5.75rem)] sm:px-8 sm:py-8">
-              <form
-                action="https://formsubmit.co/navinnimesh25@gmail.com"
-                method="POST"
-                encType="multipart/form-data"
-                onSubmit={validateUploads}
-                className="mx-auto max-w-5xl"
-              >
-                <input type="hidden" name="_subject" value="New NN Europe Visa Consultant Form Submission" />
-                <input type="hidden" name="_template" value="table" />
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_next" value="https://nn-europe-consultant.vercel.app/thank-you.html" />
-
+              <form onSubmit={handleSubmit} className="mx-auto max-w-5xl">
                 <div className="mb-7 grid gap-4 rounded-[1.5rem] border border-brand-gold/20 bg-brand-gold/[0.07] p-5 text-sm text-white/70 md:grid-cols-2 md:p-6">
                   <div className="flex gap-3">
                     <ShieldCheck className="mt-0.5 shrink-0 text-brand-gold" size={20} />
@@ -299,11 +370,26 @@ export default function VisaClientForm() {
                   </span>
                 </label>
 
+                {submitError && (
+                  <p className="mt-8 rounded-2xl border border-red-400/30 bg-red-500/10 px-5 py-4 text-sm font-semibold text-red-200">
+                    {submitError}
+                  </p>
+                )}
+
                 <button
                   type="submit"
-                  className="mt-8 flex w-full items-center justify-center gap-3 rounded-2xl bg-gold px-8 py-5 text-lg font-bold text-brand-navy shadow-xl shadow-brand-gold/20 transition hover:scale-[1.01] hover:shadow-brand-gold/30 active:scale-[0.99]"
+                  disabled={isSubmitting}
+                  className="mt-8 flex w-full items-center justify-center gap-3 rounded-2xl bg-gold px-8 py-5 text-lg font-bold text-brand-navy shadow-xl shadow-brand-gold/20 transition hover:scale-[1.01] hover:shadow-brand-gold/30 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
                 >
-                  Submit Client Form <CheckCircle2 size={22} />
+                  {isSubmitting ? (
+                    <>
+                      Submitting... <Loader2 size={22} className="animate-spin" />
+                    </>
+                  ) : (
+                    <>
+                      Submit Client Form <CheckCircle2 size={22} />
+                    </>
+                  )}
                 </button>
               </form>
             </div>
